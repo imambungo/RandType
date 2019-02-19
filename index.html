@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<p>Type anything</p>
+		<p id="log"></p>
+	</body>
+	<script>
+		let input = document.querySelector('body');
+		let log = document.querySelector('#log');
+
+		input.addEventListener('keypress', function(e) {
+			log.innerText = `Key pressed: ${String.fromCharCode(e.charCode)}\ncharCode: ${e.charCode}`;
+		});
+		// Source: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode#JavaScript
+	</script>
+</html>
