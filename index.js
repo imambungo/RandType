@@ -21,6 +21,8 @@ let randomCharCode = 32;// first char to type: ⎵ (space bar)
 
 let log = document.querySelector('#log');
 
+let wrongChars = [];
+
 // always detect keystrokes
 // Source: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode#JavaScript
 input.addEventListener('keypress', function(e)
@@ -39,16 +41,17 @@ input.addEventListener('keypress', function(e)
 		// Increment combo
 		comboValue++;
 		combo.innerText = `Combo : ${comboValue}`;
+
+		// Reset wrong characters
+		wrongChars = [];
 	}
 	else// If the typed character doesn't match the random char
 	{
-		// show typed character
-		if (e.charCode == 32)
-			log.innerText = `⎵`;
-		else if (e.charCode == 13)
-			log.innerText = '↵';
-		else
-			log.innerText = `${String.fromCharCode(e.charCode)}`;
+		// Push the wrong character to wrongChars array
+		pushWrongChars(e.charCode);
+
+		// Update wrong characters
+		updateWrongChars();
 
 		// Increment wrong keystrokes
 		wrongKeystrokesValue++;
@@ -75,6 +78,7 @@ function changeChar() {
 function getRandomChar()
 {
 	randomCharCode = getRandomIntInclusive(32,126);// See: http://rmhh.co.uk/ascii.html
+	// TODO: include ↵ (enter), ⇆ (tab), ⌫  (backspace)
 
 	if (randomCharCode == 32)// (Space bar)
 		randomChar = "⎵";// Instead of " "
@@ -95,7 +99,37 @@ function getRandomIntInclusive(min, max)
 
 function updateAccuracy()
 {
-	totalKeystrokes = correctKeystrokesValue + wrongKeystrokesValue
-	accuracyValue = 100 * correctKeystrokesValue / totalKeystrokes
+	totalKeystrokes = correctKeystrokesValue + wrongKeystrokesValue;
+	accuracyValue = 100 * correctKeystrokesValue / totalKeystrokes;
 	accuracy.innerText = `Accuracy: ${accuracyValue.toFixed(2)}%`;
+}
+
+function pushWrongChars(charCode)
+{
+	if (charCode == 32)
+		wrongChars.push('⎵');
+	else if (charCode == 13)
+		wrongChars.push('↵');
+	else
+		wrongChars.push( `${String.fromCharCode(charCode)}` );
+
+	// Limit the length of the chars to 5
+	if (wrongChars.length > 5)
+		wrongChars.shift();
+}
+
+function updateWrongChars()
+{
+	var wrongCharsString = "";
+
+	for (var i = 0; i < wrongChars.length; i++)
+	{
+		wrongCharsString += wrongChars[i];
+
+		// Separate the chars with spaces
+		if (i < wrongChars.length - 1)
+			wrongCharsString += ' ';
+	}
+
+	log.innerText = wrongCharsString;
 }
