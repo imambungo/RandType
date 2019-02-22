@@ -18,16 +18,7 @@ body {
 	font-size: 10vh;
 }
 
-/* Mark the last letter of typos */
-/* Source: https://stackoverflow.com/a/15443126/9157799 */
-/*<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-#log {
-	unicode-bidi:bidi-override;
-	direction:rtl;
-}
-
-#log::first-letter {
+#lastWrongChar {
 	color: red;
 	font-size: 6vh;
 }
-/*>>>>>>>>>>>>>>>>>>>>>>>>>>>*/

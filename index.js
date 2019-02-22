@@ -19,7 +19,8 @@ let comboValue = 0;
 
 let randomCharCode = 32;// first char to type: ⎵ (space bar)
 
-let log = document.querySelector('#log');
+let prevWrongChars = document.querySelector('#prevWrongChars');
+let lastWrongChar = document.querySelector('#lastWrongChar');
 
 let wrongChars = [];
 
@@ -36,7 +37,10 @@ input.addEventListener('keypress', function(e)
 	if (e.charCode == randomCharCode)
 	{
 		changeChar();// Change the char to a new random char
-		log.innerText = '';// Hide last wrong typed char
+
+		// Hide last wrong typed char
+		prevWrongChars.innerText = '';
+		lastWrongChar.innerText = '';
 
 		// Increment correct keystrokes
 		correctKeystrokesValue++;
@@ -63,8 +67,8 @@ input.addEventListener('keypress', function(e)
 	}
 	else// If the typed character doesn't match the random char
 	{
-		// Unshift the wrong character to wrongChars array
-		unshiftWrongChars(e.charCode);
+		// Push the wrong character to wrongChars array
+		pushWrongChars(e.charCode);
 
 		// Update wrong characters
 		updateWrongChars();
@@ -119,32 +123,30 @@ function updateAccuracy()
 	accuracy.innerText = `${accuracyValue.toFixed(1)}`;
 }
 
-function unshiftWrongChars(charCode)
+function pushWrongChars(charCode)
 {
 	if (charCode == 32)
-		wrongChars.unshift('⎵');
+		wrongChars.push('⎵');
 	else if (charCode == 13)
-		wrongChars.unshift('↵');
+		wrongChars.push('↵');
 	else
-		wrongChars.unshift( `${String.fromCharCode(charCode)}` );
+		wrongChars.push( `${String.fromCharCode(charCode)}` );
 
 	// Limit the length of the chars to 5
 	if (wrongChars.length > 5)
-		wrongChars.pop();
+		wrongChars.shift();
 }
 
 function updateWrongChars()
 {
-	var wrongCharsString = "";
+	var prevWrongCharsString = "";
 
-	for (var i = 0; i < wrongChars.length; i++)
+	for (var i = 0; i < wrongChars.length - 1; i++)
 	{
-		wrongCharsString += wrongChars[i];
-
-		// Separate the chars with spaces
-		if (i < wrongChars.length - 1)
-			wrongCharsString += ' ';
+		prevWrongCharsString += wrongChars[i];
+		prevWrongCharsString += ' ';
 	}
 
-	log.innerText = wrongCharsString;
+	prevWrongChars.innerText = prevWrongCharsString;
+	lastWrongChar.innerText = wrongChars[wrongChars.length - 1];
 }
