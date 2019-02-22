@@ -36,7 +36,7 @@ input.addEventListener('keypress', function(e)
 
 		// Increment correct keystrokes
 		correctKeystrokesValue++;
-		correctKeystrokes.innerText = `Correct keystrokes: ${correctKeystrokesValue}`;
+		correctKeystrokes.innerText = `${correctKeystrokesValue}`;
 
 		// Increment combo
 		comboValue++;
@@ -61,7 +61,7 @@ input.addEventListener('keypress', function(e)
 
 		// Increment wrong keystrokes
 		wrongKeystrokesValue++;
-		wrongKeystrokes.innerText = `Wrong keystrokes: ${wrongKeystrokesValue}`;
+		wrongKeystrokes.innerText = `${wrongKeystrokesValue}`;
 
 		// Reset combo
 		comboValue = 0;
@@ -101,7 +101,7 @@ function updateAccuracy()
 {
 	totalKeystrokes = correctKeystrokesValue + wrongKeystrokesValue;
 	accuracyValue = 100 * correctKeystrokesValue / totalKeystrokes;
-	accuracy.innerText = `Accuracy: ${accuracyValue.toFixed(2)}%`;
+	accuracy.innerText = `${accuracyValue.toFixed(1)}`;
 }
 
 function pushWrongChars(charCode)
