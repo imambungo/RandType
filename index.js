@@ -23,6 +23,10 @@ let log = document.querySelector('#log');
 
 let wrongChars = [];
 
+// Get the first random char
+// Source: https://stackoverflow.com/a/4842622/9157799
+window.onload = changeChar;
+
 // always detect keystrokes
 // Source: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode#JavaScript
 input.addEventListener('keypress', function(e)
@@ -40,7 +44,9 @@ input.addEventListener('keypress', function(e)
 
 		// Increment combo
 		comboValue++;
-		combo.innerText = `Combo : ${comboValue}`;
+
+		if (comboValue > 1)
+			combo.innerText = `Combo : ${comboValue}`;
 
 		if (comboValue > highestComboValue)
 		{
@@ -65,7 +71,10 @@ input.addEventListener('keypress', function(e)
 
 		// Reset combo
 		comboValue = 0;
-		combo.innerText = 'Combo: 0';
+
+		// set combo.innerText to a non-breaking space
+		// Source: https://stackoverflow.com/a/5238020/9157799
+		combo.innerText = '\xa0';
 	}
 
 	updateAccuracy();
