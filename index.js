@@ -47,6 +47,10 @@ input.addEventListener('keypress', function(e)
 
 		if (comboValue > 1)
 			combo.innerText = `Combo : ${comboValue}`;
+		else
+			// set combo.innerText to a non-breaking space
+			// Source: https://stackoverflow.com/a/5238020/9157799
+			combo.innerText = '\xa0';
 
 		if (comboValue > highestComboValue)
 		{
@@ -59,8 +63,8 @@ input.addEventListener('keypress', function(e)
 	}
 	else// If the typed character doesn't match the random char
 	{
-		// Push the wrong character to wrongChars array
-		pushWrongChars(e.charCode);
+		// Unshift the wrong character to wrongChars array
+		unshiftWrongChars(e.charCode);
 
 		// Update wrong characters
 		updateWrongChars();
@@ -72,9 +76,11 @@ input.addEventListener('keypress', function(e)
 		// Reset combo
 		comboValue = 0;
 
-		// set combo.innerText to a non-breaking space
-		// Source: https://stackoverflow.com/a/5238020/9157799
-		combo.innerText = '\xa0';
+		if (wrongChars.length == 5)
+			combo.innerText = 'Type the char below';
+		else
+			// set combo.innerText to a non-breaking space
+			combo.innerText = '\xa0';
 	}
 
 	updateAccuracy();
@@ -113,18 +119,18 @@ function updateAccuracy()
 	accuracy.innerText = `${accuracyValue.toFixed(1)}`;
 }
 
-function pushWrongChars(charCode)
+function unshiftWrongChars(charCode)
 {
 	if (charCode == 32)
-		wrongChars.push('⎵');
+		wrongChars.unshift('⎵');
 	else if (charCode == 13)
-		wrongChars.push('↵');
+		wrongChars.unshift('↵');
 	else
-		wrongChars.push( `${String.fromCharCode(charCode)}` );
+		wrongChars.unshift( `${String.fromCharCode(charCode)}` );
 
 	// Limit the length of the chars to 5
 	if (wrongChars.length > 5)
-		wrongChars.shift();
+		wrongChars.pop();
 }
 
 function updateWrongChars()
