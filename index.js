@@ -42,6 +42,12 @@ input.addEventListener('keypress', function(e)
 		comboValue++;
 		combo.innerText = `Combo : ${comboValue}`;
 
+		if (comboValue > highestComboValue)
+		{
+			highestComboValue = comboValue;
+			highestCombo.innerText = `${highestComboValue}`;
+		}
+
 		// Reset wrong characters
 		wrongChars = [];
 	}
@@ -56,12 +62,6 @@ input.addEventListener('keypress', function(e)
 		// Increment wrong keystrokes
 		wrongKeystrokesValue++;
 		wrongKeystrokes.innerText = `Wrong keystrokes: ${wrongKeystrokesValue}`;
-
-		if (comboValue > highestComboValue)
-		{
-			highestComboValue = comboValue;
-			highestCombo.innerText = `Highest combo: ${highestComboValue}`;
-		}
 
 		// Reset combo
 		comboValue = 0;
