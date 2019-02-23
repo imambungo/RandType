@@ -143,8 +143,7 @@ function updateWrongChars()
 
 	for (var i = 0; i < wrongChars.length - 1; i++)
 	{
-		prevWrongCharsString += wrongChars[i];
-		prevWrongCharsString += ' ';
+		prevWrongCharsString += `${wrongChars[i]} `;
 	}
 
 	prevWrongChars.innerText = prevWrongCharsString;
