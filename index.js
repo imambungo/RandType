@@ -1,26 +1,26 @@
 // For future resource: https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
 
-let input = document.querySelector('body');
+let input = document.querySelector("body");
 
-let correctKeystrokes = document.querySelector('#correctKeystrokes');
+let correctKeystrokes = document.querySelector("#correctKeystrokes");
 let correctKeystrokesValue = 0;
 
-let wrongKeystrokes = document.querySelector('#wrongKeystrokes');
+let wrongKeystrokes = document.querySelector("#wrongKeystrokes");
 let wrongKeystrokesValue = 0;
 
-let accuracy = document.querySelector('#accuracy');
+let accuracy = document.querySelector("#accuracy");
 let accuracyValue = 0;
 
-let highestCombo = document.querySelector('#highestCombo');
+let highestCombo = document.querySelector("#highestCombo");
 let highestComboValue = 0;
 
-let combo = document.querySelector('#combo');
+let combo = document.querySelector("#combo");
 let comboValue = 0;
 
-let randomCharCode = 32;// first char to type: ⎵ (space bar)
+let randomCharCode = 32; // first char to type: ⎵ (space bar)
 
-let prevWrongChars = document.querySelector('#prevWrongChars');
-let lastWrongChar = document.querySelector('#lastWrongChar');
+let prevWrongChars = document.querySelector("#prevWrongChars");
+let lastWrongChar = document.querySelector("#lastWrongChar");
 
 let wrongChars = [];
 
@@ -30,17 +30,14 @@ window.onload = changeChar;
 
 // always detect keystrokes
 // Source: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode#JavaScript
-input.addEventListener('keypress', function(e)
-{
-
+input.addEventListener("keypress", function(e) {
 	// If the typed character match the random char
-	if (e.charCode == randomCharCode)
-	{
-		changeChar();// Change the char to a new random char
+	if (e.charCode == randomCharCode) {
+		changeChar(); // Change the char to a new random char
 
 		// Hide last wrong typed char
-		prevWrongChars.innerText = '';
-		lastWrongChar.innerText = '';
+		prevWrongChars.innerText = "";
+		lastWrongChar.innerText = "";
 
 		// Increment correct keystrokes
 		correctKeystrokesValue++;
@@ -49,15 +46,15 @@ input.addEventListener('keypress', function(e)
 		// Increment combo
 		comboValue++;
 
-		if (comboValue > 1)
+		if (comboValue > 1) {
 			combo.innerText = `Combo : ${comboValue}`;
-		else
+		} else {
 			// set combo.innerText to a non-breaking space
 			// Source: https://stackoverflow.com/a/5238020/9157799
-			combo.innerText = '\xa0';
+			combo.innerText = "\xa0";
+		}
 
-		if (comboValue > highestComboValue)
-		{
+		if (comboValue > highestComboValue) {
 			highestComboValue = comboValue;
 			highestCombo.innerText = `${highestComboValue}`;
 		}
@@ -65,8 +62,8 @@ input.addEventListener('keypress', function(e)
 		// Reset wrong characters
 		wrongChars = [];
 	}
-	else// If the typed character doesn't match the random char
-	{
+	// If the typed character doesn't match the random char
+	else {
 		// Push the wrong character to wrongChars array
 		pushWrongChars(e.charCode);
 
@@ -80,11 +77,12 @@ input.addEventListener('keypress', function(e)
 		// Reset combo
 		comboValue = 0;
 
-		if (wrongChars.length == 5)
-			combo.innerText = 'Type the char below';
-		else
+		if (wrongChars.length == 5) {
+			combo.innerText = "Type the char below";
+		} else {
 			// set combo.innerText to a non-breaking space
-			combo.innerText = '\xa0';
+			combo.innerText = "\xa0";
+		}
 	}
 
 	updateAccuracy();
@@ -94,55 +92,55 @@ function changeChar() {
 	document.getElementById("randomChar").innerHTML = getRandomChar();
 }
 
-function getRandomChar()
-{
-	randomCharCode = getRandomIntInclusive(32,126);// See: http://rmhh.co.uk/ascii.html
+function getRandomChar() {
+	randomCharCode = getRandomIntInclusive(32, 126); // See: http://rmhh.co.uk/ascii.html
 	// TODO: include ↵ (enter), ⇆ (tab), ⌫  (backspace)
 
-	if (randomCharCode == 32)// (Space bar)
-		randomChar = "⎵";// Instead of " "
-	else
+	if (randomCharCode == 32) {
+		// (Space bar)
+		randomChar = "⎵";
+		// Instead of " "
+	} else {
 		randomChar = String.fromCharCode(randomCharCode);
+	}
 
 	return randomChar;
 }
 
 // get random integer between two values
 // Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#Getting_a_random_integer_between_two_values_inclusive
-function getRandomIntInclusive(min, max)
-{
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+function getRandomIntInclusive(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	//The maximum is inclusive and the minimum is inclusive
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function updateAccuracy()
-{
+function updateAccuracy() {
 	totalKeystrokes = correctKeystrokesValue + wrongKeystrokesValue;
-	accuracyValue = 100 * correctKeystrokesValue / totalKeystrokes;
+	accuracyValue = (100 * correctKeystrokesValue) / totalKeystrokes;
 	accuracy.innerText = `${accuracyValue.toFixed(1)}`;
 }
 
-function pushWrongChars(charCode)
-{
-	if (charCode == 32)
-		wrongChars.push('⎵');
-	else if (charCode == 13)
-		wrongChars.push('↵');
-	else
-		wrongChars.push( `${String.fromCharCode(charCode)}` );
+function pushWrongChars(charCode) {
+	if (charCode == 32) {
+		wrongChars.push("⎵");
+	} else if (charCode == 13) {
+		wrongChars.push("↵");
+	} else {
+		wrongChars.push(`${String.fromCharCode(charCode)}`);
+	}
 
 	// Limit the length of the chars to 5
-	if (wrongChars.length > 5)
+	if (wrongChars.length > 5) {
 		wrongChars.shift();
+	}
 }
 
-function updateWrongChars()
-{
+function updateWrongChars() {
 	var prevWrongCharsString = "";
 
-	for (var i = 0; i < wrongChars.length - 1; i++)
-	{
+	for (var i = 0; i < wrongChars.length - 1; i++) {
 		prevWrongCharsString += `${wrongChars[i]} `;
 	}
 
