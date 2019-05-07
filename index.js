@@ -23,6 +23,8 @@ let prevWrongChars = document.querySelector("#prevWrongChars");
 let lastWrongChar = document.querySelector("#lastWrongChar");
 
 let wrongChars = [];
+let permanentTyposCount = new Array(126).fill(0);
+let permanentTypos = document.querySelector("#permanentTypos");
 
 // Get the first random char
 // Source: https://stackoverflow.com/a/4842622/9157799
@@ -83,6 +85,9 @@ input.addEventListener("keypress", function(e) {
 			// set combo.innerText to a non-breaking space
 			combo.innerText = "\xa0";
 		}
+
+		permanentTyposCount[e.charCode]++;
+		updatePermanentTypos();
 	}
 
 	updateAccuracy();
@@ -146,4 +151,16 @@ function updateWrongChars() {
 
 	prevWrongChars.innerText = prevWrongCharsString;
 	lastWrongChar.innerText = wrongChars[wrongChars.length - 1];
+}
+
+function updatePermanentTypos() {
+	var permanentTyposString = "";
+
+	for (var i = 32; i <= 126; i++) {
+		if (permanentTyposCount[i] > 0)
+			permanentTyposString += `${String.fromCharCode(i)}: ` +
+			                        `${permanentTyposCount[i]}\n`;
+	}
+
+	permanentTypos.innerText = permanentTyposString;
 }
