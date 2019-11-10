@@ -93,6 +93,7 @@ function changeChar() {
 }
 
 function getRandomChar() {
+  let randomChar;
   randomCharCode = getRandomIntInclusive(32, 126); // See: http://rmhh.co.uk/ascii.html
   // TODO: include ↵ (enter), ⇆ (tab), ⌫  (backspace)
 
@@ -117,7 +118,7 @@ function getRandomIntInclusive(min, max) {
 }
 
 function updateAccuracy() {
-  totalKeystrokes = correctKeystrokesValue + wrongKeystrokesValue;
+  const totalKeystrokes = correctKeystrokesValue + wrongKeystrokesValue;
   accuracyValue = (100 * correctKeystrokesValue) / totalKeystrokes;
   accuracy.innerText = `${accuracyValue.toFixed(1)}`;
 }
