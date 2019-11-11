@@ -1,0 +1,25 @@
+.center {
+  text-align: center;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+body {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 5vh;
+}
+
+#randomChar {
+  font-size: 10vh;
+}
+
+#lastWrongChar {
+  color: red;
+  font-size: 6vh;
+}
