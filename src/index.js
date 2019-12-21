@@ -26,7 +26,7 @@ let wrongChars = [];
 
 // Get the first random char
 // Source: https://stackoverflow.com/a/4842622/9157799
-window.onload = changeChar;
+window.addEventListener("DOMContentLoaded", changeChar);
 
 // always detect keystrokes
 // Source: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode#JavaScript
