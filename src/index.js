@@ -1,26 +1,26 @@
 // For future resource: https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
 
-let input = document.querySelector("body");
+const input = document.querySelector("body");
 
-let correctKeystrokes = document.querySelector("#correctKeystrokes");
+const correctKeystrokes = document.querySelector("#correctKeystrokes");
 let correctKeystrokesValue = 0;
 
-let wrongKeystrokes = document.querySelector("#wrongKeystrokes");
+const wrongKeystrokes = document.querySelector("#wrongKeystrokes");
 let wrongKeystrokesValue = 0;
 
-let accuracy = document.querySelector("#accuracy");
+const accuracy = document.querySelector("#accuracy");
 let accuracyValue = 0;
 
-let highestCombo = document.querySelector("#highestCombo");
+const highestCombo = document.querySelector("#highestCombo");
 let highestComboValue = 0;
 
-let combo = document.querySelector("#combo");
+const combo = document.querySelector("#combo");
 let comboValue = 0;
 
 let randomCharCode = 32; // first char to type: ⎵ (space bar)
 
-let prevWrongChars = document.querySelector("#prevWrongChars");
-let lastWrongChar = document.querySelector("#lastWrongChar");
+const prevWrongChars = document.querySelector("#prevWrongChars");
+const lastWrongChar = document.querySelector("#lastWrongChar");
 
 let wrongChars = [];
 
@@ -139,9 +139,9 @@ function pushWrongChars(charCode) {
 }
 
 function updateWrongChars() {
-  var prevWrongCharsString = "";
+  let prevWrongCharsString = "";
 
-  for (var i = 0; i < wrongChars.length - 1; i++) {
+  for (let i = 0; i < wrongChars.length - 1; i++) {
     prevWrongCharsString += `${wrongChars[i]} `;
   }
 
