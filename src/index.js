@@ -1,7 +1,5 @@
 // For future resource: https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
 
-const input = document.querySelector("body");
-
 const correctKeystrokes = document.querySelector("#correctKeystrokes");
 let correctKeystrokesValue = 0;
 
@@ -30,7 +28,7 @@ window.addEventListener("DOMContentLoaded", changeChar);
 
 // always detect keystrokes
 // Source: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode#JavaScript
-input.addEventListener("keypress", function(e) {
+document.body.addEventListener("keypress", function(e) {
   // If the typed character match the random char
   if (e.charCode == randomCharCode) {
     changeChar(); // Change the char to a new random char
