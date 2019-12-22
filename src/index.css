@@ -1,3 +1,6 @@
+@import "typeface-ubuntu";
+@import "@fortawesome/fontawesome-free/css/all.css";
+
 .center {
   text-align: center;
 }

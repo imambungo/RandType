@@ -1,3 +1,6 @@
+dependencies:
+  "@fortawesome/fontawesome-free": 5.12.0
+  typeface-ubuntu: 0.0.65
 devDependencies:
   "@babel/core": 7.7.5
   "@babel/preset-env": 7.7.6_@babel+core@7.7.5
@@ -780,6 +783,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-cz5Ji23KCi4T+YIE/BolWosrJuSmoZeN1EFnRtBwF+KKLi8GG/Z2c2hOJJeCXPk4mwk4QFvTmwIodJowXgttRA==
+  /@fortawesome/fontawesome-free/5.12.0:
+    dev: false
+    engines:
+      node: ">=6"
+    resolution:
+      integrity: sha512-vKDJUuE2GAdBERaQWmmtsciAMzjwNrROXA5KTGSZvayAsmuTGjam5z6QNqNPCwDfVljLWuov1nEC3mEQf/n6fQ==
   /@iarna/toml/2.2.3:
     dev: true
     resolution:
@@ -6224,6 +6233,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+  /typeface-ubuntu/0.0.65:
+    dev: false
+    resolution:
+      integrity: sha512-v+s/216IINmqQoO3Y9+bKDn9OgrasPtRLWaVSmjRBljFDkFndmQjHcsLZrv0r89aSeqzxlBvKwZIigFh8pZO9Q==
   /uncss/0.17.2:
     dependencies:
       commander: 2.20.3
@@ -6552,6 +6565,7 @@ packages:
 specifiers:
   "@babel/core": ^7.7.2
   "@babel/preset-env": ^7.7.1
+  "@fortawesome/fontawesome-free": ^5.12.0
   babel-eslint: ^10.0.3
   cssnano: ^4.1.10
   eslint: ^6.6.0
@@ -6560,3 +6574,4 @@ specifiers:
   lint-staged: ^9.4.2
   parcel-bundler: ^1.12.4
   prettier: ^1.19.1
+  typeface-ubuntu: ^0.0.65
