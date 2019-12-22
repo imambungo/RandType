@@ -1,24 +1,25 @@
 // For future resource: https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
 
-const correctKeystrokes = document.querySelector("#correctKeystrokes");
+const correctKeystrokes = document.querySelector("#correct-keystrokes");
 let correctKeystrokesValue = 0;
 
-const wrongKeystrokes = document.querySelector("#wrongKeystrokes");
+const wrongKeystrokes = document.querySelector("#wrong-keystrokes");
 let wrongKeystrokesValue = 0;
 
 const accuracy = document.querySelector("#accuracy");
 let accuracyValue = 0;
 
-const highestCombo = document.querySelector("#highestCombo");
+const highestCombo = document.querySelector("#highest-combo");
 let highestComboValue = 0;
 
 const combo = document.querySelector("#combo");
 let comboValue = 0;
 
+const randomChar = document.querySelector("#random-char");
 let randomCharCode = 32; // first char to type: ⎵ (space bar)
 
-const prevWrongChars = document.querySelector("#prevWrongChars");
-const lastWrongChar = document.querySelector("#lastWrongChar");
+const prevWrongChars = document.querySelector("#prev-wrong-chars");
+const lastWrongChar = document.querySelector("#last-wrong-char");
 
 let wrongChars = [];
 
@@ -87,7 +88,7 @@ document.body.addEventListener("keypress", function(e) {
 });
 
 function changeChar() {
-  document.getElementById("randomChar").innerHTML = getRandomChar();
+  randomChar.innerHTML = getRandomChar();
 }
 
 function getRandomChar() {
