@@ -1,6 +1,11 @@
 @import "typeface-ubuntu";
 @import "@fortawesome/fontawesome-free/css/all.css";
 
+body {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 5vh;
+}
+
 .center {
   text-align: center;
 }
@@ -13,9 +18,8 @@
   color: green;
 }
 
-body {
-  font-family: "Ubuntu", sans-serif;
-  font-size: 5vh;
+.orange {
+  color: orange;
 }
 
 #randomChar {
