@@ -5,11 +5,15 @@
     "start": "parcel serve src/index.html",
     "build": "parcel build src/index.html"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0",
+    "typeface-ubuntu": "^0.0.65"
+  },
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "babel-eslint": "^10.0.3",
+    "cssnano": "^4.1.10",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "husky": "^3.0.9",
@@ -23,7 +27,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,css,json,md,html}": [
+    "*.{js,css,json,md,html,yml,yaml}": [
       "prettier --write",
       "git add"
     ],

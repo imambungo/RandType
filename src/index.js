@@ -1,36 +1,35 @@
 // For future resource: https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
 
-let input = document.querySelector("body");
-
-let correctKeystrokes = document.querySelector("#correctKeystrokes");
+const correctKeystrokes = document.querySelector("#correct-keystrokes");
 let correctKeystrokesValue = 0;
 
-let wrongKeystrokes = document.querySelector("#wrongKeystrokes");
+const wrongKeystrokes = document.querySelector("#wrong-keystrokes");
 let wrongKeystrokesValue = 0;
 
-let accuracy = document.querySelector("#accuracy");
+const accuracy = document.querySelector("#accuracy");
 let accuracyValue = 0;
 
-let highestCombo = document.querySelector("#highestCombo");
+const highestCombo = document.querySelector("#highest-combo");
 let highestComboValue = 0;
 
-let combo = document.querySelector("#combo");
+const combo = document.querySelector("#combo");
 let comboValue = 0;
 
+const randomChar = document.querySelector("#random-char");
 let randomCharCode = 32; // first char to type: ⎵ (space bar)
 
-let prevWrongChars = document.querySelector("#prevWrongChars");
-let lastWrongChar = document.querySelector("#lastWrongChar");
+const prevWrongChars = document.querySelector("#prev-wrong-chars");
+const lastWrongChar = document.querySelector("#last-wrong-char");
 
 let wrongChars = [];
 
 // Get the first random char
 // Source: https://stackoverflow.com/a/4842622/9157799
-window.onload = changeChar;
+window.addEventListener("DOMContentLoaded", changeChar);
 
 // always detect keystrokes
 // Source: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode#JavaScript
-input.addEventListener("keypress", function(e) {
+document.body.addEventListener("keypress", function(e) {
   // If the typed character match the random char
   if (e.charCode == randomCharCode) {
     changeChar(); // Change the char to a new random char
@@ -89,7 +88,7 @@ input.addEventListener("keypress", function(e) {
 });
 
 function changeChar() {
-  document.getElementById("randomChar").innerHTML = getRandomChar();
+  randomChar.innerHTML = getRandomChar();
 }
 
 function getRandomChar() {
@@ -111,8 +110,6 @@ function getRandomChar() {
 // get random integer between two values
 // Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#Getting_a_random_integer_between_two_values_inclusive
 function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
   //The maximum is inclusive and the minimum is inclusive
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -139,9 +136,9 @@ function pushWrongChars(charCode) {
 }
 
 function updateWrongChars() {
-  var prevWrongCharsString = "";
+  let prevWrongCharsString = "";
 
-  for (var i = 0; i < wrongChars.length - 1; i++) {
+  for (let i = 0; i < wrongChars.length - 1; i++) {
     prevWrongCharsString += `${wrongChars[i]} `;
   }
 

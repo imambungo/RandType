@@ -5,49 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GalaType</title>
     <link rel="stylesheet" type="text/css" href="index.css" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Ubuntu"
-      rel="stylesheet"
-    />
   </head>
-  <body class="center">
+  <body>
     <header>
       <span title="Correct keystrokes">
-        <span id="correctKeystrokes">0</span>
-        <span class="green">✔</span>
+        <span id="correct-keystrokes">0</span>
+        <i class="fas fa-check green"></i>
       </span>
       &emsp;
       <!-- Source: https://id.wikihow.com/Menyisipkan-Spasi-Dalam-HTML -->
       <span title="Accuracy">
         <span id="accuracy">0</span>
-        %
-        <i class="fa fa-crosshairs" aria-hidden="true"></i>
+        <span>%</span>
+        <i class="fas fa-crosshairs"></i>
       </span>
       &emsp;
       <span title="Highest combo">
-        <span id="highestCombo">0</span>
-        🔥
+        <span id="highest-combo">0</span>
+        <i class="fas fa-fire-alt orange"></i>
       </span>
       &emsp;
       <span title="Wrong keystrokes">
-        <span id="wrongKeystrokes">0</span>
-        <span class="red">✘</span>
+        <span id="wrong-keystrokes">0</span>
+        <i class="fas fa-times red"></i>
       </span>
     </header>
     <main>
       <p id="combo">Type the char below</p>
-      <p id="randomChar"></p>
+      <p id="random-char"></p>
       <p>
-        <span id="prevWrongChars"></span>
-        <span id="lastWrongChar"></span>
+        <span id="prev-wrong-chars"></span>
+        <span id="last-wrong-char"></span>
       </p>
     </main>
+    <script type="text/javascript" src="index.js"></script>
   </body>
-  <script type="text/javascript" src="index.js"></script>
 </html>
